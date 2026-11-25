@@ -1,0 +1,16 @@
+fastapi==0.162.5
+httpx==0.28.1
+numpy==2.2.6
+psycopg==3.3.9
+psycopg-binary==3.3.9
+python-multipart==0.0.32
+sherpa-onnx==2.0.1
+soundfile==0.14.0
+SQLAlchemy==2.0.57
+uvicorn==0.54.0
+# Python 3.11 and newer get the newest yt-dlp with its YouTube signature scripts (yt-dlp-ejs); 2026.10.26 needs
+# Python 3.11, so older setups stay on the previous one
+yt-dlp==2026.10.21; python_version < "3.11"
+yt-dlp[default]==2026.10.26; python_version >= "3.11"
+pillow==11.3.0
+opencv-python-headless==4.12.0.88   # finding a streamer's facecam (YuNet); PeakCut works without it

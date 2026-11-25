@@ -1,0 +1,17 @@
+# HTTPS certificates are fetched automatically for the domain.
+{$PEAKCUT_DOMAIN} {
+	encode zstd gzip
+	@upload path /api/upload /api/upload/*
+	request_body @upload {
+		max_size 2200MB
+	}
+	@small not path /api/upload /api/upload/*
+	request_body @small {
+		max_size 1MB
+	}
+	# while the app restarts (a deploy, a settings change), requests wait for it instead of failing
+	reverse_proxy app:8765 {
+		lb_try_duration 45s
+		lb_try_interval 250ms
+	}
+}
